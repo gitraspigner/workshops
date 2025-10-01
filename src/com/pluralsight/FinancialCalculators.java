@@ -1,15 +1,17 @@
 package com.pluralsight;
 
 /**
- * TODO: Good description of program
+ * Calculates and displays results for 3 different financial annuity calculators: mortgage,
+ * present value, and future value.
  *
  * @author Ravi Spigner
  */
 public class FinancialCalculators {
     public static void main(String[] args) {
         //Notes:
-        //-for getting input values, just use method calls - only get Scanner input
-        // if time allows, it's more important to have formulas correctly working
+        //-for getting input values, just use method calls (only get Scanner input
+        // if time allows, it's more important to have formulas correctly working)
+        //-not all formulas need to be completed
         //-also, * and × both mean multiplication
 
         //calc1 mortgage test
@@ -19,7 +21,7 @@ public class FinancialCalculators {
         double monthlyPayment = calc1MortgageMonthlyPayment(principalLoanAmount, annualInterestRate,loanYears);
         double totalInterest = calc1MortgageTotalInterest(monthlyPayment, loanYears, principalLoanAmount);
         System.out.printf("A $%,d loan at %.3f%% interest for %d years would have a $%.2f/mo " +
-                "payment with a total interest of $%,.2f.%n",principalLoanAmount,
+                "payment with a total interest of $%,.2f.%n%n",principalLoanAmount,
                 annualInterestRate,loanYears, monthlyPayment, totalInterest);
 
         //calc 2 future value test
@@ -30,12 +32,17 @@ public class FinancialCalculators {
         double futureValueTotalInterest = calc2FutureValueTotalInterest(futureValue,principalDeposit);
         System.out.printf("If you deposit $%,d in your CD that earns %.2f%% interest " +
                         "and matures in %d years, your CD's%nending balance will be $%.2f " +
-                        "and you would have earned $%,.2f in interest.%n",principalDeposit,
+                        "and you would have earned $%,.2f in interest.%n%n",principalDeposit,
                 interestRate,yearsElapsed, futureValue, futureValueTotalInterest);
 
-
-
-
+        //calc 3 present value test
+        int monthlyPayout = 3000;
+        double expectedInterestRate = 2.5;
+        int years = 20;
+        double presentValue = calc3PresentValue(monthlyPayout, expectedInterestRate, years);
+        System.out.printf("To fund an annuity that pays $%,d monthly for %d years and earns " +
+                "an expected %.1f%% interest, you would need to invest $%,.2f today.%n%n",
+                monthlyPayout, years, expectedInterestRate, presentValue);
     }
 
     /**
@@ -59,7 +66,6 @@ public class FinancialCalculators {
                 (monthlyInterestRate*Math.pow(1+monthlyInterestRate,loanMonths)) /
                 (Math.pow(1+monthlyInterestRate,loanMonths)-1));
     }
-
     /**
      * calculator 1 formula - calculates total interest for a loan based off of
      * monthly payment amount, loan years, and principal loan amount
@@ -77,8 +83,6 @@ public class FinancialCalculators {
         return (monthlyPayment*loanMonths)-principalLoanAmount;
     }
 
-
-    //calculator 2 formula
     /**
      * calculator 2 formula - calculates future value for a one-time deposit assuming compound
      * interest based off of deposit amount, interest rate, and years elapsed
@@ -98,31 +102,38 @@ public class FinancialCalculators {
         return deposit*(
                 Math.pow(1+(interestRate/365.00), (365.00*years)));
     }
-    //
     /**
      * calculator 2 formula - calculates total interest of future value
      * monthly payment amount, loan years, and principal loan amount
      * T = FV - P
      *
-     * FV = future value (what we're calculating)
+     * T = future value total interest (what we're calculating)
+     * FV = future value (value returned by calc2FutureValue)
      * P = principal deposit (initial amount)
      */
     public static double calc2FutureValueTotalInterest(double futureValue, int principalDeposit) {
         return futureValue - principalDeposit;
     }
 
-
-
-    //calculator 3 formula:
     /**
-     * Present value:
-     *
+     * calculator 3 formula - calculates present value of an ordinary annuity given the
+     * monthly payout, expected interest rate, and years to pay out.
      * PV = PMT×((1-(1/((1+i)^n)))/i)
      *
-     * Where:
-     * PVPVPV = present value (the amount today)
-     * PMTPMTPMT = the fixed payment per period (your monthlyPayout)
-     * iii = interest rate per period (your monthlyInterestRate)
-     * NNN = total number of payments (your totalPayments)
+     * PV = present value (the amount today) (what we're calculating)
+     * PMT = the fixed payment per period (your monthlyPayout)
+     * i = interest rate per period, which is yearly (your expectedInterestRate)
+     * N = total number of monthly payments (given by payoutYears*12)
      */
+    public static double calc3PresentValue(int monthlyPayout, double expectedInterestRate,
+                                           int payoutYears) {
+        //convert expectedInterestRate (ex. 2.5, which is yearly) to decimal form (/100.00),
+        //and then to monthly (/12.00)
+        double monthlyInterestRate = (expectedInterestRate/100.00)/12.00;
+        //convert payout years (ex. 20 years) to months (*12)
+        int months = payoutYears*12;
+
+        return monthlyPayout*(
+                (1-(1/(Math.pow(1+monthlyInterestRate, months)))))/monthlyInterestRate;
+    }
 }
