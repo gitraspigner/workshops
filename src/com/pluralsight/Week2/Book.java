@@ -62,7 +62,7 @@ public class Book {
     }
 
     public String getCheckedOutTo() {
-        if (checkedOutTo.equals("") || checkedOutTo == null) {
+        if (checkedOutTo.isEmpty() || checkedOutTo == null) {
             return "No one";
         } else {
             return checkedOutTo;

@@ -41,8 +41,7 @@ public class Library {
                             if (checkoutChoice == 'Y') {
                                 System.out.print("Enter your name: ");
                                 String name = scanner.nextLine();
-                                book.setIsCheckedOut(true);
-                                book.setCheckedOutTo(name);
+                                book.checkOut(name);
                                 System.out.println("Successfully checked out to " + book.getCheckedOutTo());
                             } else {
                                 System.out.println("Invalid menu choice.");
@@ -62,11 +61,9 @@ public class Library {
                                     "X = Exit to main menu): ");
                             char action = scanner.nextLine().toUpperCase().charAt(0);
                             if (action == 'C') {
-                                book.setIsCheckedOut(false);
-
                                 System.out.println("Book " + book.getTitle() + " has been " +
                                         "checked in by " + book.getCheckedOutTo() + " successfully!");
-                                book.setCheckedOutTo("");
+                                book.checkIn();
                             } else if (action == 'X') {
                                 break;
                             } else {
@@ -85,11 +82,10 @@ public class Library {
                         if (book != null && book.getId() == checkInId) {
                             found = true;
                             if (book.isCheckedOut()) {
-                                book.setIsCheckedOut(false);
                                 System.out.println("Book " + book.getTitle() +
                                         " has been checked in by " + book.getCheckedOutTo() +
                                         " successfully!");
-                                book.setCheckedOutTo("");
+                                book.checkIn();
                                 continue;
                             } else {
                                 System.out.println("That book is already checked in.");
