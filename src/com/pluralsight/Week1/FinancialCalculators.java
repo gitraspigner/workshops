@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.Week1;
 
 /**
  * Calculates and displays results for 3 different financial annuity calculators: mortgage,
