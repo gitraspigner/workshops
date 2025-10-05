@@ -9,6 +9,8 @@ import java.util.Scanner;
  *
  * @author Ravi Spigner
  */
+
+//TODO test code again
 public class Library {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -43,6 +45,8 @@ public class Library {
                                 String name = scanner.nextLine();
                                 book.checkOut(name);
                                 System.out.println("Successfully checked out to " + book.getCheckedOutTo());
+                            } else if (checkoutChoice == 'N') {
+                                continue;
                             } else {
                                 System.out.println("Invalid menu choice.");
                             }
@@ -64,11 +68,12 @@ public class Library {
                                 System.out.println("Book " + book.getTitle() + " has been " +
                                         "checked in by " + book.getCheckedOutTo() + " successfully!");
                                 book.checkIn();
+                            } else if (action == 'V') {
+                                continue;
                             } else if (action == 'X') {
                                 break;
                             } else {
                                 System.out.println("Invalid menu choice.");
-                                break;
                             }
                         }
                     }
