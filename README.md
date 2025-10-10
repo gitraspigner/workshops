@@ -20,7 +20,8 @@ Most of the instructor's workshop solutions should be titled 'workshop' or inclu
 
 ### 💭 My Thoughts: <br>
 ## Week/Workshop 1
-- Workhop Title: Financial Calculators | Program(s) Description: Calculates and displays results for 3 different financial annuity calculators: mortgage, present value, and future value.
+- Workhop Title: Financial Calculators
+- Program(s) Description: Calculates and displays results for 3 different financial annuity calculators: mortgage, present value, and future value.
   - Thoughts: This workshop created a lot of discipline within me for properly understanding PEMDAS (the order of mathematical operations) and the usage/pairing of parenthesis in mathematical expressions & calculations in Java. This is primarily due to having to implement multiple mathematical formulas which are easily written on paper, but become more complex to write (and interpret) in Java code form.  
 ## Week/Workshop 2
 -In Progress-
