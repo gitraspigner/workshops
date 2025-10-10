@@ -16,13 +16,13 @@ The instructor's versions of these workshop solutions can be found [here](https:
 Most of the instructor's workshop solutions should be titled 'workshop' or include that in the folder or filename. <br>
 
 #### 🕒 Commits History Here<br>
-[Click Here](https://github.com/gitraspigner/workshops/commits/master)
+[Click Here](https://github.com/gitraspigner/workshops/commits/master) <br>
 
 ### 💭 My Thoughts: <br>
 ## Week/Workshop 1
 - Workhop Title: Financial Calculators
 - Program(s) Description: Calculates and displays results for 3 different financial annuity calculators: mortgage, present value, and future value.
-  - Thoughts: This workshop created a lot of discipline within me for properly understanding PEMDAS (the order of mathematical operations) and the usage/pairing of parenthesis in mathematical expressions & calculations in Java. This is primarily due to having to implement multiple mathematical formulas which are easily written on paper, but become more complex to write (and interpret) in Java code form.  
+  - Thoughts: This workshop created a lot of discipline within me for properly understanding PEMDAS (the order of mathematical operations) via the usage/pairing of parenthesis in mathematical expressions & calculations in Java. This is primarily due to having to implement multiple mathematical formulas which are easily written on paper, but become more complex to write (and interpret) in Java code form.
 ## Week/Workshop 2
 -In Progress-
 - Workhop Title: XXX | Program(s) Description: XXX
