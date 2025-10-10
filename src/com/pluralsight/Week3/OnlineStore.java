@@ -61,23 +61,35 @@ public class OnlineStore {
     }
 
     public static void mainMenu() {
-        System.out.print("Please enter an option (1-Display Products, 2-Display Cart, 3-Exit): ");
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        while (input != 3) {
+            String input;
+            int option;
+            boolean hasCheckedOut = false;
+        while (true) {
+            System.out.println("---Main Menu---");
+            System.out.print("Please enter an option (1-Display Products, 2-Display Cart, 3-Exit): ");
+            input = scanner.nextLine();
 
-            if (input == 1) {
+            try {
+                option = Integer.parseInt(input);
+            } catch (Exception e) {
+                continue;
+                //continue next iteration of loop if input is not an integer, re-prompt for input
+            }
+
+            if (option == 1) {
                 displayProducts();
                 getProductInput();
-            } else if (input == 2) {
+            } else if (option == 2) {
                 displayCart();
-                getCartInput();
-            } else {
+                hasCheckedOut = getCartInput();
+                if (hasCheckedOut) {
+                    break;
+                }
+            } else if (option == 3) {
                 break;
+            } else {
+                continue;
             }
-            System.out.print("Please enter an option (1-Display Products, 2-Display Cart, 3-Exit): ");
-            input = scanner.nextInt();
-            scanner.nextLine();
         }
     }
 
@@ -89,33 +101,42 @@ public class OnlineStore {
     }
 
     public static void getProductInput() {
-        System.out.print("Please enter an option (1-Search, 2-Add Product To Cart, " +
-                "3-Back to main menu): ");
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        while(input != 3) {
+        String input;
+        int option;
 
-            if (input == 1) {
-                //search for a product (by sku, price, or department)
-                searchProducts();
-            } else if (input == 2) {
-                //add product to cart
-                addProductToCart();
-            } else {
-                break;
-            }
+        while(true) {
+            System.out.println("---Product Input---");
             System.out.print("Please enter an option (1-Search, 2-Add Product To Cart, " +
                     "3-Back to main menu): ");
-            input = scanner.nextInt();
-            scanner.nextLine();
+            input = scanner.nextLine();
+
+            try {
+                option = Integer.parseInt(input);
+            } catch (Exception e) {
+                continue;
+                //continue next iteration of loop if input is not an integer, re-prompt for input
+            }
+
+            if (option == 1) {
+                //search for a product (by sku, price, or department)
+                searchProducts();
+            } else if (option == 2) {
+                //add product to cart
+                addProductToCart();
+            } else if (option == 3) {
+                break;
+            } else {
+                continue;
+            }
         }
     }
 
     public static void searchProducts() {
-        System.out.print("Please enter the product info to search for (the Product Name, Department," +
+        System.out.println("---Product Search---");
+        System.out.print("Product Search: Please enter the product info to search for (the Product Name, Department," +
                 " or Price): ");
         String productInfo = scanner.nextLine();
-        System.out.println("---Products found---");
+        System.out.println("---Products Found:---");
         for(Map.Entry<String, Product> product : productsAvailable.entrySet()) {
             if(productInfo.equalsIgnoreCase(product.getKey()) ||
                     productInfo.equalsIgnoreCase(product.getValue().getDepartment())) {
@@ -134,6 +155,7 @@ public class OnlineStore {
     }
 
     public static void addProductToCart() {
+        System.out.println("---Add To Your Cart: SKU Input---");
         System.out.print("Please enter the SKU of the product to add to your cart: ");
         String productSKU = scanner.nextLine().toUpperCase();
 
@@ -154,6 +176,7 @@ public class OnlineStore {
     }
 
     public static void removeProductFromCart() {
+        System.out.println("---Remove From Your Cart: SKU Input---");
         System.out.print("Please enter the SKU of the product to remove from your cart: ");
         String productSKU = scanner.nextLine().toUpperCase();
 
@@ -176,28 +199,38 @@ public class OnlineStore {
         }
     }
 
-    public static void getCartInput() {
-        System.out.print("Please enter an option (1-Check out, 2-Remove Product from Cart, " +
-                "3-Back to main menu): ");
-        int input = scanner.nextInt();
-        scanner.nextLine();
-        while (input != 3) {
+    //returns true if check out option was selected
+    public static boolean getCartInput() {
+        String input;
+        int option;
 
-            if (input == 1) {
-                displayCart();
-                checkOut();
-                break;
-            } else if (input == 2) {
-                //remove product from cart
-                removeProductFromCart();
-            } else {
-                break;
-            }
+        while (true) {
+            System.out.println("---Cart Input---");
             System.out.print("Please enter an option (1-Check out, 2-Remove Product from Cart, " +
                     "3-Back to main menu): ");
-            input = scanner.nextInt();
-            scanner.nextLine();
+            input = scanner.nextLine();
+
+            try {
+                option = Integer.parseInt(input);
+            } catch (Exception e) {
+                continue;
+                //continue next iteration of loop if input is not an integer, re-prompt for input
+            }
+
+            if (option == 1) {
+                displayCart();
+                checkOut();
+                return true;
+            } else if (option == 2) {
+                //remove product from cart
+                removeProductFromCart();
+            } else if (option == 3) {
+                break;
+            } else {
+                continue;
+            }
         }
+        return false;
     }
 
     public static void checkOut() {
