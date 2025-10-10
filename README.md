@@ -7,7 +7,7 @@
 
 | Active/Inactive | Active Dates |
 | --- | --- |
-| ![Status](![status-active](https://img.shields.io/badge/status-active-brightgreen)) | 10/01/2025 - XX/XX/XXXX|
+| ![Status](https://img.shields.io/badge/status-active-brightgreen) | 10/01/2025 - XX/XX/XXXX|
 
 ### 📝 Description
 Contains a collection of my weekly workshop solutions. <br>
