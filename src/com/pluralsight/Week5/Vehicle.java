@@ -1,5 +1,4 @@
 package com.pluralsight.Week5;
-
 /**
  * *******Add program description here******
  *
@@ -25,7 +24,6 @@ public class Vehicle {
         this.odometer = odometer;
         this.price = price;
     }
-
     @Override
     public String toString() {
         return "vin: " + vin +
@@ -37,7 +35,6 @@ public class Vehicle {
                 ", odometer: " + odometer +
                 ", price: " + price;
     }
-
     public int getVin() {
         return vin;
     }
