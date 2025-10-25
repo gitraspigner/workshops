@@ -87,6 +87,12 @@ public class Dealership {
         return inventory.add(vehicle);
     }
     public boolean removeVehicle(Vehicle vehicle) {
-        return inventory.remove(vehicle);
+        for (Vehicle v: inventory) {
+            if (v.equals(vehicle)) {
+                inventory.remove(vehicle);
+                return true;
+            }
+        }
+        return false;
     }
 }
