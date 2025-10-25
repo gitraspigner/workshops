@@ -3,19 +3,19 @@ import java.util.List;
 import java.util.Scanner;
 import static com.pluralsight.Week5.DealershipFileManager.isNumber;
 /**
- * *******Add program description here******
+ * Represents the user interface for a car dealership (command line).
  *
  * @author Ravi Spigner
  */
 public class UserInterface {
-    private Dealership dealership;
+    private static Dealership dealership;
     private final static Scanner scanner = new Scanner(System.in);
 
     public UserInterface() {
         //part of writeup to have a constructor, but I am not using this
         setDealership(DealershipFileManager.getDealership());
     }
-    //TODO: reduce line numbers to < 100 characters
+
     //TODO: add class javadoc comments
     public void beginShoppingExperience() {
         displayWelcome();
@@ -23,10 +23,8 @@ public class UserInterface {
         displayGoodbye();
     }
     public void displayMenu() {
-        System.out.println("----Menu----");
         String input;
         //begin main menu
-        label:
         while (true) {
             System.out.println("---Main Menu---");
             System.out.print("""
@@ -42,7 +40,7 @@ public class UserInterface {
                         9 - Remove a vehicle
                         99 - Quit
                         """);
-            System.out.print("~: ");
+            System.out.print("~Input: ");
             input = scanner.nextLine().trim();
             switch (input) {
                 case "1": {
@@ -149,6 +147,7 @@ public class UserInterface {
                         System.out.println("Vehicle Successfully Added!");
                     } else {
                         System.out.println("Vehicle Adding Failed...");
+                        continue;
                     }
                     break;
                 case "9":
@@ -157,12 +156,13 @@ public class UserInterface {
                         System.out.println("Vehicle Successfully Removed!");
                     } else {
                         System.out.println("Vehicle Removing Failed...");
+                        continue;
                     }
-                    this.getVehicleInfoAndAddOrRemove(false);
                     break;
                 case "99":
                     //Quit
-                    break label; //goodbye message will be displayed via beginShoppingExperience()
+                    DealershipFileManager.saveDealership(getDealership());
+                    return; //goodbye message will be displayed via beginShoppingExperience()
                 default:
                     System.out.println("-------------------");
                     System.out.println("ERROR: Invalid Menu Option: " + input);
@@ -230,7 +230,7 @@ public class UserInterface {
             DealershipFileManager.errorMessage(priceString, true);
             return false;
         }
-        int price = Integer.parseInt(priceString);
+        double price = Double.parseDouble(priceString);
         Vehicle v = new Vehicle(vin, year, make, model, type, color, odometer, price);
         if(isAdding) {
             return dealership.addVehicle(v);
@@ -240,65 +240,66 @@ public class UserInterface {
     }
     public void displayVehiclesPriceRange(double upper, double lower) {
         System.out.println("----Vehicles Within Price Range----");
-        List<Vehicle> vehicles = this.getDealership().getVehiclesPriceRange(upper, lower);
+        List<Vehicle> vehicles = getDealership().getVehiclesPriceRange(upper, lower);
         for(Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
     public void displayVehiclesYearRange(int upper, int lower) {
         System.out.println("----Vehicles Within Year Range----");
-        List<Vehicle> vehicles = this.getDealership().getVehiclesYearRange(upper, lower);
+        List<Vehicle> vehicles = getDealership().getVehiclesYearRange(upper, lower);
         for(Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
     public void displayVehiclesMileageRange(int upper, int lower) {
         System.out.println("----Vehicles Within Mileage Range----");
-        List<Vehicle> vehicles = this.getDealership().getVehiclesMileageRange(upper, lower);
+        List<Vehicle> vehicles = getDealership().getVehiclesMileageRange(upper, lower);
         for(Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
     public void displayVehiclesMakeOrModel(String makeOrModel) {
         System.out.println("----Vehicles Matching Make/Model----");
-        List<Vehicle> vehicles = this.getDealership().getVehiclesMakeOrModel(makeOrModel);
+        List<Vehicle> vehicles = getDealership().getVehiclesMakeOrModel(makeOrModel);
         for(Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
     public void displayVehiclesColor(String color) {
         System.out.println("----Vehicles Matching Color----");
-        List<Vehicle> vehicles = this.getDealership().getVehiclesColor(color);
+        List<Vehicle> vehicles = getDealership().getVehiclesColor(color);
         for(Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
     public void displayVehiclesType(String type) {
         System.out.println("----Vehicles Matching Type----");
-        List<Vehicle> vehicles = this.getDealership().getVehiclesType(type);
+        List<Vehicle> vehicles = getDealership().getVehiclesType(type);
         for (Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
     public void displayAllVehicles() {
         System.out.println("----All Vehicles----");
-        List<Vehicle> vehicles = this.getDealership().getAllVehicles();
+        List<Vehicle> vehicles = getDealership().getAllVehicles();
         for(Vehicle v : vehicles) {
             System.out.println(v);
         }
     }
-    public static void displayWelcome() {
+    public void displayWelcome() {
         System.out.println("----Welcome to Our Car Dealership----");
+        System.out.println("--Dealership: " + getDealership().getName() + "--");
+        System.out.println("--Address: " + getDealership().getAddress() + "--");
+        System.out.println("--Phone: " + getDealership().getPhone() + "--");
     }
     public static void displayGoodbye() {
         System.out.println("----Goodbye! We Appreciate Your Business!----");
     }
-
-    public Dealership getDealership() {
-        return this.dealership;
+    public static Dealership getDealership() {
+        return dealership;
     }
-
     public void setDealership(Dealership dealership) {
-        this.dealership = dealership;
+        UserInterface.dealership = dealership;
     }
 }
