@@ -2,7 +2,8 @@ package com.pluralsight.Week5;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * *******Add program description here******
+ * Represents a car dealership including its info (name, address, and phone number) and the
+ * collection of vehicles it has in its inventory.
  *
  * @author Ravi Spigner
  */
