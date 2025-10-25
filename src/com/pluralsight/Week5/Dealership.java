@@ -29,6 +29,12 @@ public class Dealership {
     public List<Vehicle> getAllVehicles() {
         return inventory;
     }
+    public String toStringForFileWrite() {
+        return name +
+                "|" + address +
+                "|" + phone;
+    }
+
     public List<Vehicle> getVehiclesPriceRange(double upper, double lower) {
         List<Vehicle> result = new ArrayList<Vehicle>();
         for(Vehicle v: inventory) {
