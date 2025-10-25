@@ -1,6 +1,6 @@
 package com.pluralsight.Week5;
 /**
- * *******Add program description here******
+ * Begins the Car Dealership program.
  *
  * @author Ravi Spigner
  */
