@@ -1,6 +1,9 @@
 package com.pluralsight.Week5;
+
+import java.util.Objects;
+
 /**
- * *******Add program description here******
+ * Represents a Vehicle within a Car Dealership.
  *
  * @author Ravi Spigner
  */
@@ -35,6 +38,34 @@ public class Vehicle {
                 ", odometer: " + odometer +
                 ", price: " + price;
     }
+
+    public String toStringForFileWrite() {
+        return vin +
+                "|" + year +
+                "|" + make +
+                "|" + model +
+                "|" + vehicleType +
+                "|" + color +
+                "|" + odometer +
+                "|" + price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Vehicle vehicle = (Vehicle) o;
+        return vin == vehicle.vin && year == vehicle.year && odometer == vehicle.odometer &&
+                Double.compare(price, vehicle.price) == 0 &&
+                Objects.equals(make, vehicle.make) && Objects.equals(model, vehicle.model) &&
+                Objects.equals(vehicleType, vehicle.vehicleType) &&
+                Objects.equals(color, vehicle.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vin, year, make, model, vehicleType, color, odometer, price);
+    }
+
     public int getVin() {
         return vin;
     }
