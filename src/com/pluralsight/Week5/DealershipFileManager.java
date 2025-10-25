@@ -4,6 +4,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 /**
  * Reads vehicles and writes all vehicles from/to an input file for a car dealership program.
+ * Input File is formatted as such:
+ * Dealership Name|Dealership Address|Dealership Phone Number
+ * Vin Number|Year|Make|Model|VehicleType|Color|OdometerReading|Price
+ * Vin Number|Year|Make|Model|VehicleType|Color|OdometerReading|Price
+ * ....
  *
  * @author Ravi Spigner
  */
