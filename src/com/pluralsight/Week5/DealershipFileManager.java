@@ -1,15 +1,14 @@
 package com.pluralsight.Week5;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 /**
- * *******Add program description here******
+ * Reads vehicles and writes all vehicles from/to an input file for a car dealership program.
  *
  * @author Ravi Spigner
  */
 public class DealershipFileManager {
-
+    private static final String filePath = "DataFiles/inventory.csv";
     public static boolean isNumber(String input) {
         try {
             Double.parseDouble(input); //will return true for doubles/decimals and ints
@@ -30,7 +29,6 @@ public class DealershipFileManager {
     }
     //read through file (if it exists) and build vehicles list
     public static Dealership getDealership() {
-        String filePath = "DataFiles/inventory.csv";
         Dealership dealership = null;
         //read user file only if it exists
         if (Files.exists(Path.of(filePath))) {
@@ -151,6 +149,25 @@ public class DealershipFileManager {
         }
         return dealership;
     }
-
-    //TODO: write to file
+    public static void saveDealership(Dealership dealership) {
+        //this syntax for the try block
+        try (BufferedWriter bufferedWriter = new BufferedWriter(
+                new FileWriter(filePath))) {
+            //write dealership info to top of file
+            bufferedWriter.write(UserInterface.getDealership().toStringForFileWrite());
+            bufferedWriter.newLine();
+            //write vehicles in inventory
+            for (Vehicle v : dealership.getAllVehicles()) {
+                bufferedWriter.write(v.toStringForFileWrite());
+                bufferedWriter.newLine();
+            }
+            //closes automatically using try block syntax above,
+            //no need for manual bufferedWriter.close() here
+        } catch (IOException e) {
+            System.out.println("-------------------");
+            System.out.println("ERROR: Invalid file path " +
+                    filePath); //could not write to file, possible invalid filepath
+            System.out.println("-------------------");
+        }
+    }
 }
