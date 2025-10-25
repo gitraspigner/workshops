@@ -1,10 +1,8 @@
 package com.pluralsight.Week5;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
 /**
  * *******Add program description here******
  *
@@ -20,7 +18,16 @@ public class DealershipFileManager {
             return false;
         }
     }
+    public static void errorMessage(String input, boolean wantedNumber) {
+        System.out.println("-------------------");
+        if (wantedNumber) {
+            System.out.println("ERROR: " + input + " is not a number");
+        } else {
+            System.out.println("ERROR: " + input + " is a word, not a number");
+        }
+        System.out.println("-------------------");
 
+    }
     //read through file (if it exists) and build vehicles list
     public static Dealership getDealership() {
         String filePath = "DataFiles/inventory.csv";
@@ -58,7 +65,6 @@ public class DealershipFileManager {
                         System.out.println("-------------------");
                         continue; //skip the line and keep reading, may as well
                     }
-
                     vinString = vehicleData[0];
                     if (!isNumber(vinString)) {
                         System.out.println("-------------------");
@@ -69,7 +75,6 @@ public class DealershipFileManager {
                         continue; //skip the line
                     }
                     int vin = Integer.parseInt(vinString);
-
                     yearString = vehicleData[1];
                     if (!isNumber(yearString)) {
                         System.out.println("-------------------");
@@ -81,8 +86,6 @@ public class DealershipFileManager {
                         continue; //skip the line
                     }
                     int year = Integer.parseInt(yearString);
-
-
                     make = vehicleData[2];
                     if (isNumber(make)) {
                         System.out.println("-------------------");
@@ -110,7 +113,6 @@ public class DealershipFileManager {
                         System.out.println("-------------------");
                         continue; //skip the line
                     }
-
                     color = vehicleData[5];
                     if (isNumber(color)) {
                         System.out.println("-------------------");
@@ -120,7 +122,6 @@ public class DealershipFileManager {
                         System.out.println("-------------------");
                         continue; //skip the line
                     }
-
                     odometerString = vehicleData[6];
                     if (!isNumber(odometerString)) {
                         System.out.println("-------------------");
@@ -130,7 +131,6 @@ public class DealershipFileManager {
                         continue; //skip the line
                     }
                     int odometer = Integer.parseInt(odometerString);
-
                     priceString = vehicleData[7];
                     if (!isNumber(priceString)) {
                         System.out.println("-------------------");
@@ -140,7 +140,6 @@ public class DealershipFileManager {
                         continue; //skip the line
                     }
                     double price = Double.parseDouble(priceString);
-
                     dealership.addVehicle(new Vehicle(vin, year, make, model,
                             vehicleType, color, odometer, price));
                 }
