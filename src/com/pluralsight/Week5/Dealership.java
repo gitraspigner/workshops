@@ -15,7 +15,16 @@ public class Dealership {
         this.phone = phone;
         this.address = address;
         this.name = name;
-        this.inventory = new ArrayList<Vehicle>();
+        inventory = new ArrayList<Vehicle>();
+    }
+    public String getName() {
+        return name;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public String getPhone() {
+        return phone;
     }
     public List<Vehicle> getAllVehicles() {
         return inventory;
