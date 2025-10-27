@@ -15,8 +15,6 @@ public class UserInterface {
         //part of writeup to have a constructor, but I am not using this
         setDealership(DealershipFileManager.getDealership());
     }
-
-    //TODO: add class javadoc comments
     public void beginShoppingExperience() {
         displayWelcome();
         displayMenu();
