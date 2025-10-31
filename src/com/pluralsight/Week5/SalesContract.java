@@ -60,4 +60,24 @@ public class SalesContract extends Contract {
                     / (Math.pow(1 + monthlyRate, months) - 1);
         }
     }
+    @Override
+    public String toString() {
+        Vehicle vehicleSold = super.getVehicleSold();
+        return "SALE|" + super.getDate() + "|" + super.getCustomerName() +
+                "|" + super.getCustomerEmail() + "|" +
+                vehicleSold.getVin() + "|" +
+                vehicleSold.getYear() + "|" +
+                vehicleSold.getMake() + "|" +
+                vehicleSold.getModel() + "|" +
+                vehicleSold.getVehicleType() + "|" +
+                vehicleSold.getColor() + "|" +
+                vehicleSold.getOdometer() + "|" +
+                vehicleSold.getPrice() + "|" +
+                SALES_TAX_AMOUNT + "|" +
+                RECORDING_FEE + "|" +
+                processingFee + "|" +
+                (isFinanced ? "YES" : "NO") + "|" +
+                getTotalPrice() + "|" +
+                getMonthlyPayment();
+    }
 }

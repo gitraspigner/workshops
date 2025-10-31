@@ -1,5 +1,4 @@
 package com.pluralsight.Week5;
-
 /**
  * *******Add program description here******
  *
@@ -28,6 +27,23 @@ public class LeaseContract extends Contract {
     }
     public void setLeaseFee(double leaseFee) {
         this.leaseFee = leaseFee;
+    }
+    @Override
+    public String toString() {
+        Vehicle vehicleSold = super.getVehicleSold();
+        return "LEASE|" + super.getDate() + "|" + super.getCustomerName() +
+                "|" + super.getCustomerEmail() + "|" + vehicleSold.getVin() +
+                "|" + vehicleSold.getYear() + "|" +
+                vehicleSold.getMake() + "|" +
+                vehicleSold.getModel() + "|" +
+                vehicleSold.getVehicleType() + "|" +
+                vehicleSold.getColor() + "|" +
+                vehicleSold.getOdometer() + "|" +
+                vehicleSold.getPrice() + "|" +
+                expectedEndingValue + "|" +
+                leaseFee + "|" +
+                getTotalPrice() + "|" +
+                getMonthlyPayment();
     }
     @Override
     public double getTotalPrice() {

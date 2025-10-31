@@ -11,12 +11,14 @@ public class Dealership {
     private String name;
     private String address;
     private String phone;
-    private static ArrayList<Vehicle> inventory = null;
+    private ArrayList<Vehicle> inventory;
+    private ArrayList<Contract> transactions;
     public Dealership(String phone, String address, String name) {
         this.phone = phone;
         this.address = address;
         this.name = name;
         inventory = new ArrayList<Vehicle>();
+        transactions = new ArrayList<Contract>();
     }
     public String getName() {
         return name;
@@ -30,12 +32,14 @@ public class Dealership {
     public List<Vehicle> getAllVehicles() {
         return inventory;
     }
+    public List<Contract> getAllContracts() {
+        return transactions;
+    }
     public String toStringForFileWrite() {
         return name +
                 "|" + address +
                 "|" + phone;
     }
-
     public List<Vehicle> getVehiclesPriceRange(double upper, double lower) {
         List<Vehicle> result = new ArrayList<Vehicle>();
         for(Vehicle v: inventory) {
@@ -90,6 +94,14 @@ public class Dealership {
         }
         return result;
     }
+    public Vehicle getVehicleByVin(int vin) {
+        for (Vehicle v : inventory) {
+            if (v.getVin() == vin) {
+                return v;
+            }
+        }
+        return null; //no vehicle matching vin found
+    }
     public boolean addVehicle(Vehicle vehicle) {
         return inventory.add(vehicle);
     }
@@ -97,6 +109,19 @@ public class Dealership {
         for (Vehicle v: inventory) {
             if (v.equals(vehicle)) {
                 inventory.remove(vehicle);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean addContract(Contract contract) {
+        return transactions.add(contract) &&
+                inventory.remove(getVehicleByVin(contract.getVehicleSold().getVin()));
+    }
+    public boolean removeContract(Contract contract) {
+        for (Contract c: transactions) {
+            if (c.equals(contract)) {
+                transactions.remove(contract);
                 return true;
             }
         }

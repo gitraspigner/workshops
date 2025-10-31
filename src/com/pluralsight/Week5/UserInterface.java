@@ -36,6 +36,8 @@ public class UserInterface {
                         7 - List ALL vehicles
                         8 - Add a vehicle
                         9 - Remove a vehicle
+                        10 - Add a Transaction / Contract
+                        11 - List ALL Transactions / Contracts
                         99 - Quit
                         """);
             System.out.print("~Input: ");
@@ -157,9 +159,21 @@ public class UserInterface {
                         continue;
                     }
                     break;
+                case "10":
+                    if (this.addTransaction()) {
+                        //Great
+                    } else {
+                        System.out.println("Transaction failed...");
+                    }
+                    break;
+                case "11":
+                    //List all transactions
+                    this.displayAllTransactions();
+                    break;
                 case "99":
                     //Quit
                     DealershipFileManager.saveDealership(getDealership());
+                    //TODO: save transactions
                     return; //goodbye message will be displayed via beginShoppingExperience()
                 default:
                     System.out.println("-------------------");
@@ -170,6 +184,100 @@ public class UserInterface {
                     break;
             }
         }
+    }
+    public boolean addTransaction() {
+        System.out.println("---Add Transaction---");
+        System.out.print("Enter contract type (sale/lease): ");
+        String type = scanner.nextLine().trim().toLowerCase();
+        if (!(type.equals("sale") || type.equals("lease"))) {
+            DealershipFileManager.errorMessage("Invalid contract type. Must be 'sale' or 'lease'.", false);
+            return false;
+        }
+        System.out.print("Enter the VIN of the vehicle: ");
+        String vinString = scanner.nextLine().trim();
+        if (!isNumber(vinString)) {
+            DealershipFileManager.errorMessage(vinString, true);
+            return false;
+        }
+        int vin = Integer.parseInt(vinString);
+        Vehicle vehicle = null;
+        for (Vehicle v : dealership.getAllVehicles()) {
+            if (v.getVin() == vin) {
+                vehicle = v;
+                break;
+            }
+        }
+        if (vehicle == null) {
+            DealershipFileManager.errorMessage("No vehicle found with VIN " + vin, false);
+            return false;
+        }
+        System.out.print("Enter the vehicle make: ");
+        String make = scanner.nextLine().trim();
+        System.out.print("Enter the vehicle model: ");
+        String model = scanner.nextLine().trim();
+        System.out.print("Enter the vehicle type: ");
+        String vehicleType = scanner.nextLine().trim();
+        System.out.print("Enter the vehicle color: ");
+        String color = scanner.nextLine().trim();
+        if (isNumber(make) || isNumber(model) || isNumber(vehicleType) || isNumber(color)) {
+            DealershipFileManager.errorMessage("Make/Model/Type/Color are words, not numbers",
+                    false);
+            return false;
+        }
+        if (!vehicle.getMake().equalsIgnoreCase(make)
+                || !vehicle.getModel().equalsIgnoreCase(model)
+                || !vehicle.getVehicleType().equalsIgnoreCase(vehicleType)
+                || !vehicle.getColor().equalsIgnoreCase(color)) {
+            DealershipFileManager.errorMessage("Vehicle details not found for vin number" +
+                    vin, false);
+            return false;
+        }
+        System.out.print("Enter buyer name: ");
+        String buyerName = scanner.nextLine().trim();
+        if (buyerName.isEmpty() || buyerName.contains("@")) {
+            DealershipFileManager.errorMessage("Buyer name cannot be empty and must not be " +
+                    "an email", false);
+            return false;
+        }
+        System.out.print("Enter buyer email: ");
+        String buyerEmail = scanner.nextLine().trim();
+        if (buyerEmail.isEmpty() || !buyerEmail.contains("@")) {
+            DealershipFileManager.errorMessage("Buyer email cannot be empty and must be an " +
+                    "email containing '@'", false);
+            return false;
+        }
+        System.out.print("Enter transaction date (YYYY-MM-DD): ");
+        String date = scanner.nextLine().trim();
+        if (date.isEmpty()) {
+            DealershipFileManager.errorMessage("Date cannot be empty", false);
+            return false;
+        }
+        Contract contract;
+        switch (type) {
+            case "sale":
+                System.out.print("Do you want to finance this sale? (1-True, 2-False): ");
+                String financeInput = scanner.nextLine().trim().toLowerCase();
+                boolean isFinanced = financeInput.equals("1") || financeInput.equals("2");
+                contract = new SalesContract(date, buyerName, buyerEmail, vehicle, isFinanced);
+                break;
+            case "lease":
+                contract = new LeaseContract(date, buyerName, buyerEmail, vehicle);
+                break;
+            default:
+                DealershipFileManager.errorMessage("Unknown contract type: " + type, false);
+                return false;
+        }
+        boolean added = dealership.addContract(contract);
+        if (added) {
+            System.out.println("Transaction successfully added!");
+            //if vehicle was already sold, remove from dealership
+            if (contract instanceof SalesContract) {
+                dealership.removeVehicle(vehicle);
+            }
+        } else {
+            DealershipFileManager.errorMessage("Failed to add transaction/contract...", false);
+        }
+        return added;
     }
     public boolean getVehicleInfoAndAddOrRemove(boolean isAdding) {
         if (isAdding) {
@@ -283,6 +391,13 @@ public class UserInterface {
         List<Vehicle> vehicles = getDealership().getAllVehicles();
         for(Vehicle v : vehicles) {
             System.out.println(v);
+        }
+    }
+    public void displayAllTransactions() {
+        System.out.println("----All Transactions----");
+        List<Contract> contracts = getDealership().getAllContracts();
+        for(Contract c : contracts) {
+            System.out.println(c);
         }
     }
     public void displayWelcome() {
