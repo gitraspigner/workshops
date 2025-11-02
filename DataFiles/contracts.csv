@@ -1,5 +1,6 @@
-SALE|2025-01-15|Alice Johnson|alice@example.com|99999|2022|Honda|Civic|Sedan|Red|12000|22000|50|23000|450|YES
-LEASE|2025-02-01|Bob Smith|bob@example.com|88888|2023|Ford|F-150|Truck|Black|5000|35000|1000|36000|500
-SALE|2025-03-10|Charlie Brown|charlie@example.com|77777|2021|Chevrolet|Malibu|Sedan|White|20000|18000|25|18250|400|NO
-SALE|2025-04-20|Diana Prince|diana@example.com|66666|2020|Toyota|Corolla|Sedan|Blue|30000|15000|40|15250|350|YES
-LEASE|2025-05-05|Ethan Hunt|ethan@example.com|55555|2022|Nissan|Altima|Sedan|Gray|10000|21000|500|21500|425
+SALE|20231115|Isabella Moreno|isabella.moreno@gmail.com|55678|2021|Toyota|RAV4|SUV|Blue|20300|23995.0|495.0|25789.75|0.0|NO
+SALE|20231205|Marcus Flynn|marcus.flynn@hotmail.com|66789|2019|Honda|Accord|Sedan|Gray|40250|18995.0|495.0|20539.75|0.0|NO
+LEASE|20231122|Aaliyah Singh|aaliyah.singh@yahoo.com|77890|2023|Kia|EV6|SUV|White|1200|42995.0|21497.5|3009.65|1569317.5|723.5487291604535
+SALE|20231012|Diego Ramos|diego.ramos@gmail.com|88901|2022|Ford|Escape|SUV|Red|15000|24995.0|495.0|26839.75|0.0|NO
+SALE|20230920|Sophie Klein|sophie.klein@hotmail.com|99012|2020|Chevrolet|Malibu|Sedan|Black|30500|21995.0|495.0|23689.75|0.0|NO
+LEASE|20231201|Liam Chen|liam.chen@yahoo.com|11023|2023|Hyundai|Ioniq 5|SUV|Silver|800|48995.0|24497.5|3429.6500000000005|1788317.5|824.5207578838567
