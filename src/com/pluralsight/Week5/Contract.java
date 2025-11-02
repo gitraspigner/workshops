@@ -1,6 +1,8 @@
 package com.pluralsight.Week5;
 /**
- * *******Add program description here******
+ * A contract represents the details for a vehicle purchase/sale. A contract can either be a sale
+ * (financed or not) or a lease. Contains customer info, the vehicle sold, the date of purchase, and
+ * the total price of the sale.
  *
  * @author Ravi Spigner
  */
@@ -21,6 +23,7 @@ public abstract class Contract {
     public abstract double getTotalPrice();
     public abstract double getMonthlyPayment();
     public abstract String toString();
+    public abstract String toStringForFileWrite();
     public String getDate() {
         return date;
     }
