@@ -1,6 +1,12 @@
 package com.pluralsight.Week5;
 /**
- * *******Add program description here******
+ * A sales contract is a type of contract which represents a sale for a vehicle. Vehicle sales
+ * can be financed. A sales contract contains info from a base-level contract including
+ * customer info, the vehicle sold, the date of purchase, and the total price of the sale.
+ * The total price of the sale is dependent on several factors: processing fee ($295 for
+ * vehicles under $10,000 and $495 for all others), (if financed) monthly payment amount (the
+ * loan rate is 4.25% for vehicles priced at over $10,000 for 48 months, and the loan rate is
+ * 5.25% for all others).
  *
  * @author Ravi Spigner
  */
@@ -10,7 +16,6 @@ public class SalesContract extends Contract {
     private double processingFee;
     private boolean isFinanced;
     //no field for monthly payment since it will be retrieved from getMonthlyPayment()
-
     public SalesContract(String date, String customerName, String customerEmail,
                     Vehicle vehicleSold, boolean isFinanced) {
         super(date, customerName, customerEmail, vehicleSold);
@@ -62,6 +67,26 @@ public class SalesContract extends Contract {
     }
     @Override
     public String toString() {
+        Vehicle vehicleSold = super.getVehicleSold();
+        return "SALE, Date Sold: " + super.getDate() + ", Customer Name: " +
+                super.getCustomerName() + ", Customer Email: " + super.getCustomerEmail() +
+                ", VIN Number: " + vehicleSold.getVin() + ", Vehicle Year: " +
+                vehicleSold.getYear() + ", Make: " +
+                vehicleSold.getMake() + ", Model: " +
+                vehicleSold.getModel() + ", Type: " +
+                vehicleSold.getVehicleType() + ", Color: " +
+                vehicleSold.getColor() + ", Odometer: " +
+                vehicleSold.getOdometer() + ", Price: " +
+                String.format("%.2f", vehicleSold.getPrice()) + ", Sales Tax: " +
+                String.format("%.2f", SALES_TAX_AMOUNT) + ", Recording Fee: " +
+                String.format("%.2f", RECORDING_FEE) + ", Processing Fee: " +
+                String.format("%.2f", processingFee) + ", Financed: " +
+                (isFinanced ? "YES" : "NO") + ", Total Price: " +
+                String.format("%.2f", getTotalPrice()) + ", Monthly Payment: " +
+                String.format("%.2f", getMonthlyPayment());
+    }
+    @Override
+    public String toStringForFileWrite() {
         Vehicle vehicleSold = super.getVehicleSold();
         return "SALE|" + super.getDate() + "|" + super.getCustomerName() +
                 "|" + super.getCustomerEmail() + "|" +
