@@ -9,10 +9,18 @@ import java.nio.file.Path;
  * Vin Number|Year|Make|Model|VehicleType|Color|OdometerReading|Price
  * Vin Number|Year|Make|Model|VehicleType|Color|OdometerReading|Price
  * ....
- * Contract Input File is formatted as such:
- * CONTRACT_TYPE|DATE|CUSTOMER_NAME|CUSTOMER_EMAIL|VIN|YEAR|MAKE|MODEL|VEHICLE_TYPE|COLOR|
- * ODOMETER|VEHICLE_PRICE|[contract-specific-fields]|TOTAL_PRICE|MONTHLY_PAYMENT
- * .....
+ * Contract Input File is formatted as such, starting with a Sale (financed):
+ * SALE|DATE|CUSTOMER_NAME|CUSTOMER_EMAIL|VIN|YEAR|MAKE|MODEL|VEHICLE_TYPE|COLOR|ODOMETER|
+ * VEHICLE_PRICE|DOWN_PAYMENT|TAX|TOTAL_PRICE|YES|MONTHLY_PAYMENT
+ *
+ * Sale (not financed):
+ * SALE|DATE|CUSTOMER_NAME|CUSTOMER_EMAIL|VIN|YEAR|MAKE|MODEL|VEHICLE_TYPE|COLOR|ODOMETER|
+ * VEHICLE_PRICE|DOWN_PAYMENT|TAX|TOTAL_PRICE|NO|0.00
+ *
+ * Lease:
+ * LEASE|DATE|CUSTOMER_NAME|CUSTOMER_EMAIL|VIN|YEAR|MAKE|MODEL|VEHICLE_TYPE|COLOR|ODOMETER|
+ * VEHICLE_PRICE|DOWN_PAYMENT|TAX|TOTAL_PRICE|MONTHLY_PAYMENT
+ *
  * @author Ravi Spigner
  */
 public class DealershipFileManager {
@@ -143,45 +151,7 @@ public class DealershipFileManager {
                 new FileWriter(contractsFilePath))) {
             //write contracts in dealership
             for (Contract c : dealership.getAllContracts()) {
-                Vehicle v = c.getVehicleSold();
-
-                String baseData = (c instanceof SalesContract ? "SALE" : "LEASE") + "|" +
-                        c.getDate() + "|" +
-                        c.getCustomerName() + "|" +
-                        c.getCustomerEmail() + "|" +
-                        v.getVin() + "|" +
-                        v.getYear() + "|" +
-                        v.getMake() + "|" +
-                        v.getModel() + "|" +
-                        v.getVehicleType() + "|" +
-                        v.getColor() + "|" +
-                        v.getOdometer() + "|" +
-                        v.getPrice();
-
-                String lineToWrite;
-
-                if (c instanceof SalesContract) {
-                    SalesContract sc = (SalesContract) c;
-                    lineToWrite = baseData + "|" +
-                            sc.getProcessingFee() + "|" +
-                            sc.getTotalPrice() + "|" +
-                            sc.getMonthlyPayment() + "|" +
-                            (sc.isFinanced() ? "YES" : "NO");
-                } else if (c instanceof LeaseContract) {
-                    LeaseContract lc = (LeaseContract) c;
-                    lineToWrite = baseData + "|" +
-                            lc.getExpectedEndingValue() + "|" +
-                            lc.getLeaseFee() + "|" +
-                            lc.getTotalPrice() + "|" +
-                            lc.getMonthlyPayment();
-                } else {
-                    System.out.println("-------------------");
-                    System.out.println("ERROR: Unknown contract type for vehicle VIN " + v.getVin());
-                    System.out.println("-------------------");
-                    continue; //skip invalid contract type
-                }
-
-                bufferedWriter.write(lineToWrite);
+                bufferedWriter.write(c.toStringForFileWrite());  // <- simplified
                 bufferedWriter.newLine();
             }
             //closes automatically using try block syntax above,
