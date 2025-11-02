@@ -1,6 +1,11 @@
 package com.pluralsight.Week5;
 /**
- * *******Add program description here******
+ * A lease contract is a type of contract which represents a lease for a vehicle.
+ * A lease contract contains info from a base-level contract including
+ * customer info, the vehicle sold, the date of purchase, and the total price of the sale.
+ * The total price of the lease is dependent on several factors: expected ending value (50%
+ * of the original vehicle price), monthly payment amount (all leases are financed at 4.0% for
+ * 36 months).
  *
  * @author Ravi Spigner
  */
@@ -30,6 +35,24 @@ public class LeaseContract extends Contract {
     }
     @Override
     public String toString() {
+        Vehicle vehicleSold = super.getVehicleSold();
+        return "LEASE, Date Leased: " + super.getDate() + ", Customer Name: " +
+                super.getCustomerName() + ", Customer Email: " + super.getCustomerEmail() +
+                ", VIN Number: " + vehicleSold.getVin() + ", Vehicle Year: " +
+                vehicleSold.getYear() + ", Make: " +
+                vehicleSold.getMake() + ", Model: " +
+                vehicleSold.getModel() + ", Type: " +
+                vehicleSold.getVehicleType() + ", Color: " +
+                vehicleSold.getColor() + ", Odometer: " +
+                vehicleSold.getOdometer() + ", Price: " +
+                String.format("%.2f", vehicleSold.getPrice()) + ", Expected Ending Value: " +
+                String.format("%.2f", expectedEndingValue) + ", Lease Fee: " +
+                String.format("%.2f", leaseFee) + ", Total Lease Price: " +
+                String.format("%.2f", getTotalPrice()) + ", Monthly Payment: " +
+                String.format("%.2f", getMonthlyPayment());
+    }
+    @Override
+    public String toStringForFileWrite() {
         Vehicle vehicleSold = super.getVehicleSold();
         return "LEASE|" + super.getDate() + "|" + super.getCustomerName() +
                 "|" + super.getCustomerEmail() + "|" + vehicleSold.getVin() +
