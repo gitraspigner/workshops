@@ -5,6 +5,7 @@ package com.pluralsight.Week9;
  * @author Ravi Spigner
  */
 public class DealershipDealer {
+    private int dealership_id;
     private String name;
     private String address;
     private String phone;
@@ -15,9 +16,17 @@ public class DealershipDealer {
     }
     @Override
     public String toString() {
-        return "name: " + name +
+        return "id: " + dealership_id +
+                "name: " + name +
                 ", address: " + address +
                 ", phone: " + phone;
+    }
+
+    public int getDealership_id() {
+        return dealership_id;
+    }
+    public void setDealership_id(int dealership_id) {
+        this.dealership_id = dealership_id;
     }
     public String getName() {
         return name;
