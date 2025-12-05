@@ -62,11 +62,11 @@ CREATE TABLE `SalesContracts` (
     PRIMARY KEY (`vin`)
 );
 # ---------------------------------------------------------------------- #
-# TODO: Add table "Lease Contracts"                                      #
+# TODO (If time allows): Add table "Lease Contracts"                     #
 # ---------------------------------------------------------------------- #
 
 # ---------------------------------------------------------------------- #
-# Insert test data                                                       #
+# Insert test data (Generated via ChatGPT)                               #
 # ---------------------------------------------------------------------- #
 # ---------------------------------------------------------------------- #
 # Add info into "Dealerships"                                            #
@@ -90,7 +90,7 @@ INSERT INTO Inventory (dealership_id, vin) VALUES
 (1, 1001),
 (1, 1002),
 (2, 1003),
-(3, 1004);  # Sold vehicle, SHOULD NOT BE in inventory // Ask Maaike
+(3, 1004);  # Sold vehicle, SHOULD NOT BE in inventory
 DELETE FROM Inventory WHERE vin = 1004;
 # ---------------------------------------------------------------------- #
 # Add info into "Sales Contracts"                                        #
