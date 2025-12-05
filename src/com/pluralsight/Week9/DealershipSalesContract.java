@@ -1,7 +1,4 @@
 package com.pluralsight.Week9;
-
-import com.pluralsight.Week5.Vehicle;
-
 /**
  * *******Add program description here******
  *
