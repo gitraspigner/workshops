@@ -21,7 +21,6 @@ public class DealershipDealer {
                 ", address: " + address +
                 ", phone: " + phone;
     }
-
     public int getDealership_id() {
         return dealership_id;
     }
