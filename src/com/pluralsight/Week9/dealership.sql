@@ -101,5 +101,3 @@ INSERT INTO SalesContracts (date, vin, dealership_id, name, email, price) VALUES
 ('2025-01-05', 1001, 1, 'Jim Dale', 'jim@example.com', 25000);
 
 UPDATE Vehicles SET sold = 1 WHERE vin = 1004; # Already sold vehicle, should be 1
-UPDATE Vehicles SET sold = 1 WHERE vin = 1002; # New transaction
-UPDATE Vehicles SET sold = 1 WHERE vin = 1001; # New transaction
