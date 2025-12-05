@@ -9,17 +9,17 @@ public class DealershipVehicle {
     private int year;
     private String make;
     private String model;
-    private String vehicleType;
+    private String vehicle_type;
     private String color;
     private int odometer;
     private double price;
-    public DealershipVehicle(int vin, int year, String make, String model, String vehicleType,
+    public DealershipVehicle(int vin, int year, String make, String model, String vehicle_type,
                    String color, int odometer, double price) {
         this.vin = vin;
         this.year = year;
         this.make = make;
         this.model = model;
-        this.vehicleType = vehicleType;
+        this.vehicle_type = vehicle_type;
         this.color = color;
         this.odometer = odometer;
         this.price = price;
@@ -30,7 +30,7 @@ public class DealershipVehicle {
                 ", year: " + year +
                 ", make: " + make +
                 ", model: " + model +
-                ", vehicleType: " + vehicleType +
+                ", vehicleType: " + vehicle_type +
                 ", color: " + color +
                 ", odometer: " + odometer +
                 ", price: " + price;
@@ -59,11 +59,11 @@ public class DealershipVehicle {
     public void setModel(String model) {
         this.model = model;
     }
-    public String getVehicleType() {
-        return vehicleType;
+    public String getVehicle_type() {
+        return vehicle_type;
     }
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
+    public void setVehicle_type(String vehicle_type) {
+        this.vehicle_type = vehicle_type;
     }
     public String getColor() {
         return color;
