@@ -6,6 +6,7 @@ package com.pluralsight.Week9;
  */
 public class DealershipVehicle {
     private int vin;
+    private boolean sold;
     private int year;
     private String make;
     private String model;
@@ -13,9 +14,10 @@ public class DealershipVehicle {
     private String color;
     private int odometer;
     private double price;
-    public DealershipVehicle(int vin, int year, String make, String model, String vehicle_type,
-                   String color, int odometer, double price) {
+    public DealershipVehicle(int vin, boolean sold, int year, String make, String model,
+                             String vehicle_type, String color, int odometer, double price) {
         this.vin = vin;
+        this.sold = sold;
         this.year = year;
         this.make = make;
         this.model = model;
@@ -27,6 +29,7 @@ public class DealershipVehicle {
     @Override
     public String toString() {
         return "vin: " + vin +
+                ", sold: " + sold +
                 ", year: " + year +
                 ", make: " + make +
                 ", model: " + model +
@@ -40,6 +43,12 @@ public class DealershipVehicle {
     }
     public void setVin(int vin) {
         this.vin = vin;
+    }
+    public boolean isSold() {
+        return sold;
+    }
+    public void setSold(boolean sold) {
+        this.sold = sold;
     }
     public int getYear() {
         return year;
