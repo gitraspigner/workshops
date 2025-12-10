@@ -51,8 +51,7 @@ Most of the instructor's workshop solutions should be titled 'workshop' or inclu
 #### Week 9 - Workshop 8
 - **Workshop Title:** Car Dealership Database + Java Command Line Interface (Languages: SQL/mySQL, Java, Maven, JDBC | IDEs: IntelliJ, MySQL Workbench, Windows Command Prompt)
 - **Program(s) Description:** Represents a car dealership's database including its info (name, address, and phone number), its collection of vehicles available in inventory (each including: vin number, whether it has been sold or not, year produced, make, model, type of vehicle (SUV, truck, etc...), color, odometer reading, and price), and a record of sales contracts for the vehicles have been sold (date of sale, vin of vehicle sold, dealership id vehicle was sold from, the customer's name the vehicle was sold to, the customer's email, and the price of the vehicle sold).
-  - Class Javadoc Comments are In-Progress (as of 12/08/2025)
-- **Thoughts:** This workshop wasn't that hard for me (other than the amount of time we had to complete the entire assignment, which was a few days). The part that took the most time for me was making each of the CRUD methods (which was more difficult without using Spring) for the Vehicle class. This one wasn't too difficult but I do think I could improve upon my speed so that my Javadoc class comments aren't left as the last item I have to complete for the workshop (aside from documentation). In other words: a great review of syntax I've used before, and a humbling experience for accomplishing a great amount of work in a very short time. 
+- **Thoughts:** This workshop wasn't that hard for me (other than the amount of time we had to complete the entire assignment, which was a few days). The part that took the most time for me was making each of the CRUD methods (which was more difficult without using Spring) for the Vehicle class. This one wasn't too difficult but I do think I could improve upon my speed so that my Javadoc class comments aren't left as the last item I have to complete for the workshop (aside from README documentation). In other words: a great review of syntax I've used before, and a humbling experience for accomplishing a great amount of work in a very short time. 
 
 #### 🔖 Citation
 I wrote this README.md, but I did indeed use ChatGPT to give my initial framework and to learn markdown formatting. Therefore here is an APA Style Citation for it:  <br>
@@ -60,4 +59,4 @@ OpenAI. (2025). ChatGPT (Oct 1 version) [Large language model]. https://chatgpt.
 
 *I have to give credit where it's due, right?* <br>
 
-**Last Edited: 12/08/2025**
+**Last Edited: 12/10/2025**
