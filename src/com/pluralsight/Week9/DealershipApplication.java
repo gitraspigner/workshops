@@ -3,7 +3,11 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.SQLException;
 import java.util.Scanner;
 /**
- * *******Add program description here******
+ * A command line application that connects to a database representing
+ * multiple car dealerships. A user may display different available vehicles
+ * for purchase, add or remove a vehicle from inventory, or purchase a vehicle
+ * via a sales contract.
+ *
  *
  * @author Ravi Spigner
  */

@@ -1,6 +1,9 @@
 package com.pluralsight.Week9;
 /**
- * *******Add program description here******
+ * Represents a single dealership within the dealership database/
+ * application.
+ * Includes the dealership id number, the name of the dealership,
+ * its address (location) and its phone number.
  *
  * @author Ravi Spigner
  */

@@ -1,6 +1,9 @@
 package com.pluralsight.Week9;
 /**
- * *******Add program description here******
+ * Represents a vehicle that exists in a dealership's inventory for the dealership database/
+ * application, which is available for purchase.
+ * Includes the vin number of the vehicle and the dealership id (where it is available
+ * for purchase).
  *
  * @author Ravi Spigner
  */

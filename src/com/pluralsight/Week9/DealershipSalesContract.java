@@ -1,6 +1,10 @@
 package com.pluralsight.Week9;
 /**
- * *******Add program description here******
+ * Represents a sales contract within a vehicle dealership for the dealership database/
+ * application.
+ * Includes information such as the date of sale, vin number of vehicle sold,
+ * id number of the dealership the vehicle was sold from, the name of the customer,
+ * the email of the customer, and the price of the vehicle.
  *
  * @author Ravi Spigner
  */

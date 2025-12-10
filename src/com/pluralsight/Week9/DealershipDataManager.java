@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * *******Add program description here******
+ * Contains the logic for performing creation, reading, updating, or deleting
+ * vehicles and sales contracts for the dealership database/application.
  *
  * @author Ravi Spigner
  */

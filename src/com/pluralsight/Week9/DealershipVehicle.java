@@ -1,6 +1,11 @@
 package com.pluralsight.Week9;
 /**
- * *******Add program description here******
+ * Represents a vehicle within a car dealership.
+ * Includes information about the vehicle such as its vin number,
+ * whether it has been sold or not, the year the vehicle was produced,
+ * the make (manufacturer) of the vehicle, the model of the vehicle,
+ * the type of vehicle it is (car, truck, etc.), its color, its odometer reading,
+ * and the price that it costs to purchase it.
  *
  * @author Ravi Spigner
  */
