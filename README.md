@@ -9,7 +9,9 @@
 
 | Active/Inactive | Active Dates |
 | --- | --- |
-| ![Status](https://img.shields.io/badge/status-active-brightgreen) | 10/01/2025 - XX/XX/XXXX|
+| ![Status](https://img.shields.io/badge/status-inactive-lightgrey) | 10/01/2025 - 12/10/2025|
+<!-- Inactive:  https://img.shields.io/badge/status-inactive-lightgrey -->
+<!-- Active:    https://img.shields.io/badge/status-active-brightgreen -->
 
 ### 📝 Description
 Contains a collection of my weekly workshop solutions. <br>
@@ -59,4 +61,4 @@ OpenAI. (2025). ChatGPT (Oct 1 version) [Large language model]. https://chatgpt.
 
 *I have to give credit where it's due, right?* <br>
 
-**Last Edited: 12/10/2025**
+**Last Edited: 12/26/2025**
